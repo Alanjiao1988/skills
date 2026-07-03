@@ -12,6 +12,8 @@
     "price_used": {"type": "number"},
     "gross_yield": {"type": "number", "description": "Decimal form, e.g. 0.06 for 6%"},
     "net_yield": {"type": "number", "description": "Decimal form, e.g. 0.054 for 5.4%"},
+    "normalized_dps": {"type": ["number", "null"]},
+    "normalized_net_yield": {"type": ["number", "null"], "description": "Decimal form"},
     "withholding_rate": {"type": "number", "description": "Decimal form, e.g. 0.10 for 10%"},
     "withholding_basis": {"type": "string", "enum": ["broker_observed", "company_announcement", "legal_structure", "market_default", "unknown"]},
     "broker_observed_withholding": {"type": "string", "enum": ["Yes", "No", "Unknown"]},
@@ -22,21 +24,59 @@
     "three_year_outlook": {"type": "string", "enum": ["Grow", "Stable", "Decline", "High Uncertainty"]},
     "portfolio_role": {"type": "string", "enum": ["Core income", "Cyclical income", "Opportunistic", "Watchlist", "Avoid"]},
     "score_100": {"type": "number", "minimum": 0, "maximum": 100},
+    "dividend_snapshot": {
+      "type": "object",
+      "properties": {
+        "ttm_dps": {"type": ["number", "null"]},
+        "ttm_net_yield": {"type": ["number", "null"]},
+        "normalized_dps": {"type": ["number", "null"]},
+        "normalized_net_yield": {"type": ["number", "null"]},
+        "five_year_dps_range": {"type": "string"},
+        "latest_dps_yoy": {"type": "string"},
+        "dividend_type": {"type": "string"},
+        "coverage_status": {"type": "string"}
+      }
+    },
     "five_year_dividend_history": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "fiscal_year": {"type": "string"},
-          "dps": {"type": ["number", "null"]},
-          "ordinary_dps": {"type": ["number", "null"]},
-          "special_dps": {"type": ["number", "null"]},
-          "currency": {"type": "string"},
-          "payout_ratio": {"type": ["number", "null"]},
-          "fcf_payout_ratio": {"type": ["number", "null"]},
+          "total_dps": {"type": ["number", "null"]},
+          "base_dps": {"type": ["number", "null"]},
+          "special_or_variable_dps": {"type": ["number", "null"]},
+          "dps_yoy": {"type": ["number", "null"], "description": "Decimal form"},
+          "yield_at_current_price": {"type": ["number", "null"], "description": "Decimal form"},
+          "yield_at_year_price": {"type": ["number", "null"], "description": "Decimal form"},
+          "withholding_rate": {"type": ["number", "null"]},
+          "net_dps": {"type": ["number", "null"]},
+          "net_yield": {"type": ["number", "null"]},
+          "dividend_type": {"type": "string"},
+          "quality_tag": {"type": "string"},
           "notes": {"type": "string"}
         },
-        "required": ["fiscal_year", "currency"]
+        "required": ["fiscal_year"]
+      }
+    },
+    "cash_flow_bridge": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fiscal_year": {"type": "string"},
+          "net_income": {"type": ["number", "null"]},
+          "operating_cash_flow": {"type": ["number", "null"]},
+          "capex": {"type": ["number", "null"]},
+          "free_cash_flow": {"type": ["number", "null"]},
+          "cash_dividends": {"type": ["number", "null"]},
+          "buybacks": {"type": ["number", "null"]},
+          "share_issuance": {"type": ["number", "null"]},
+          "net_debt_change": {"type": ["number", "null"]},
+          "fcf_dividend_coverage": {"type": ["number", "null"]},
+          "funding_source": {"type": "string"}
+        },
+        "required": ["fiscal_year"]
       }
     },
     "three_year_forecast": {
@@ -45,15 +85,24 @@
         "type": "object",
         "properties": {
           "fiscal_year": {"type": "string"},
-          "bear_dps": {"type": ["number", "null"]},
-          "base_dps": {"type": ["number", "null"]},
-          "bull_dps": {"type": ["number", "null"]},
-          "bear_net_yield": {"type": ["number", "null"]},
-          "base_net_yield": {"type": ["number", "null"]},
-          "bull_net_yield": {"type": ["number", "null"]},
+          "scenario": {"type": "string", "enum": ["Bear", "Base", "Bull"]},
+          "dps": {"type": ["number", "null"]},
+          "net_yield_at_current_price": {"type": ["number", "null"]},
+          "estimated_fcf": {"type": ["number", "null"]},
+          "dividend_cash_cost": {"type": ["number", "null"]},
+          "fcf_dividend_coverage": {"type": ["number", "null"]},
+          "balance_sheet_impact": {"type": "string"},
           "key_assumptions": {"type": "string"}
         },
-        "required": ["fiscal_year", "key_assumptions"]
+        "required": ["fiscal_year", "scenario", "key_assumptions"]
+      }
+    },
+    "visual_summary": {
+      "type": "object",
+      "properties": {
+        "dps_path": {"type": "string"},
+        "yield_normalization": {"type": "string"},
+        "coverage_labels": {"type": "string"}
       }
     },
     "sources": {"type": "array", "items": {"type": "string"}}
