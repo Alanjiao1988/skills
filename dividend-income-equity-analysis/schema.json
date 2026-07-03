@@ -24,6 +24,24 @@
     "three_year_outlook": {"type": "string", "enum": ["Grow", "Stable", "Decline", "High Uncertainty"]},
     "portfolio_role": {"type": "string", "enum": ["Core income", "Cyclical income", "Opportunistic", "Watchlist", "Avoid"]},
     "score_100": {"type": "number", "minimum": 0, "maximum": 100},
+    "key_metrics_at_a_glance": {
+      "type": "object",
+      "properties": {
+        "ttm_net_yield": {"type": ["number", "null"], "description": "Decimal form"},
+        "normalized_net_yield": {"type": ["number", "null"], "description": "Decimal form or midpoint if range is described separately"},
+        "normalized_net_yield_range": {"type": "string"},
+        "score_grade": {"type": "string"},
+        "portfolio_role": {"type": "string"}
+      }
+    },
+    "rendering": {
+      "type": "object",
+      "properties": {
+        "rich_visualization_available": {"type": "boolean"},
+        "visual_mode": {"type": "string", "enum": ["rich_charts", "plain_text_fallback"]},
+        "charts_required": {"type": "array", "items": {"type": "string", "enum": ["dps_structure_chart", "yield_ladder", "coverage_chart"]}}
+      }
+    },
     "dividend_snapshot": {
       "type": "object",
       "properties": {
@@ -49,9 +67,9 @@
           "dps_yoy": {"type": ["number", "null"], "description": "Decimal form"},
           "yield_at_current_price": {"type": ["number", "null"], "description": "Decimal form"},
           "yield_at_year_price": {"type": ["number", "null"], "description": "Decimal form"},
-          "withholding_rate": {"type": ["number", "null"]},
-          "net_dps": {"type": ["number", "null"]},
-          "net_yield": {"type": ["number", "null"]},
+          "payout_ratio": {"type": ["number", "null"]},
+          "fcf_dividend_coverage": {"type": ["number", "null"]},
+          "coverage_label": {"type": "string"},
           "dividend_type": {"type": "string"},
           "quality_tag": {"type": "string"},
           "notes": {"type": "string"}
@@ -69,6 +87,7 @@
           "operating_cash_flow": {"type": ["number", "null"]},
           "capex": {"type": ["number", "null"]},
           "free_cash_flow": {"type": ["number", "null"]},
+          "fcf_quality": {"type": "string"},
           "cash_dividends": {"type": ["number", "null"]},
           "buybacks": {"type": ["number", "null"]},
           "share_issuance": {"type": ["number", "null"]},
