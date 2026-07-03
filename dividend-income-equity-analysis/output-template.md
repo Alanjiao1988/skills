@@ -31,7 +31,7 @@
 
 ## 3. Company and Listing Structure
 
-Describe domicile, issuer type, listing venue, dividend currency, reporting currency, and whether the security is an H-share, red-chip, ADR, REIT, fund, trust, or ordinary share.
+Describe domicile, issuer type, listing venue, dividend currency, reporting currency, official share count from filings, and whether the security is an H-share, red-chip, ADR, REIT, fund, trust, or ordinary share.
 
 ## 4. Dividend Treatment
 
@@ -51,15 +51,15 @@ Add a short Dividend Pattern paragraph after the table.
 | Fiscal Year | Net Income | Operating Cash Flow | Capex | Free Cash Flow | Cash Dividends | Buybacks | Share Issuance | Net Debt Change | FCF / Dividend | Funding Source |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
 
-Explain whether dividends were funded by operating free cash flow, cash balance, asset sales, debt, equity issuance, or mixed sources.
+Explain whether dividends were funded by operating free cash flow, cash balance, asset sales, debt, equity issuance, or mixed sources. If FCF is estimated as operating cash flow minus capex, label it as estimated.
 
 ## 7. Management Capital Allocation
 
-Summarize dividend policy, buyback policy, leverage target, reinvestment priority, and acquisition policy.
+Summarize dividend policy, buyback policy, leverage target, reinvestment priority, acquisition policy, share issuance, ATM programs, and whether equity issuance coincides with elevated payout.
 
 ## 8. Buyback Quality
 
-Assess share-count change, dilution, valuation discipline, and whether buybacks are debt-funded.
+Assess share-count change, dilution, valuation discipline, whether buybacks are debt-funded, and whether buybacks are offset by share issuance.
 
 ## 9. Three-Year Dividend Runway
 
@@ -70,7 +70,7 @@ Separate TTM yield from normalized and scenario yield.
 
 ## 10. Dividend Trap Checklist
 
-List each red flag and the evidence for or against it.
+List each red flag and the evidence for or against it. Include equity issuance or ATM program concurrent with elevated payout when relevant.
 
 ## 11. Visual Summary
 
@@ -80,10 +80,19 @@ Add a compact visual summary:
 - Yield normalization: TTM vs normalized vs bear/base/bull.
 - Coverage labels by year: Strong / Adequate / Weak.
 
-## 12. Score and Portfolio Role
+## 12. Score, Required Ratings, and Portfolio Role
 
 Use `scoring.md` and show points by module.
 
+Always output the six required ratings:
+
+- Dividend Quality: High / Medium / Low
+- Dividend Safety: Strong / Acceptable / Weak / Unclear
+- Withholding Efficiency: High / Medium / Low
+- Buyback Quality: Good / Neutral / Poor / Not Applicable
+- Three-Year Dividend Outlook: Grow / Stable / Decline / High Uncertainty
+- Portfolio Role: Core income / Cyclical income / Opportunistic / Watchlist / Avoid
+
 ## 13. Sources and Data Quality
 
-List official filings, announcements, broker records, and third-party cross-checks used.
+List official filings, announcements, broker records, and third-party cross-checks used. State any missing data or fallback calculations clearly.
