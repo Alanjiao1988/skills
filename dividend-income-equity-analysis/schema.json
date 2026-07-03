@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dividend Income Equity Analysis",
+  "type": "object",
+  "properties": {
+    "company": {"type": "string"},
+    "ticker": {"type": "string"},
+    "exchange": {"type": "string"},
+    "as_of_date": {"type": "string"},
+    "domicile": {"type": "string"},
+    "security_type": {"type": "string"},
+    "price_used": {"type": "number"},
+    "gross_yield": {"type": "number", "description": "Decimal form, e.g. 0.06 for 6%"},
+    "net_yield": {"type": "number", "description": "Decimal form, e.g. 0.054 for 5.4%"},
+    "withholding_rate": {"type": "number", "description": "Decimal form, e.g. 0.10 for 10%"},
+    "withholding_basis": {"type": "string", "enum": ["broker_observed", "company_announcement", "legal_structure", "market_default", "unknown"]},
+    "broker_observed_withholding": {"type": "string", "enum": ["Yes", "No", "Unknown"]},
+    "dividend_quality": {"type": "string", "enum": ["High", "Medium", "Low"]},
+    "dividend_safety": {"type": "string", "enum": ["Strong", "Acceptable", "Weak", "Unclear"]},
+    "withholding_efficiency": {"type": "string", "enum": ["High", "Medium", "Low"]},
+    "buyback_quality": {"type": "string", "enum": ["Good", "Neutral", "Poor", "Not Applicable"]},
+    "three_year_outlook": {"type": "string", "enum": ["Grow", "Stable", "Decline", "High Uncertainty"]},
+    "portfolio_role": {"type": "string", "enum": ["Core income", "Cyclical income", "Opportunistic", "Watchlist", "Avoid"]},
+    "score_100": {"type": "number", "minimum": 0, "maximum": 100},
+    "five_year_dividend_history": {"type": "array", "items": {"type": "object"}},
+    "three_year_forecast": {"type": "array", "items": {"type": "object"}},
+    "sources": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["company", "ticker", "exchange", "as_of_date", "gross_yield", "net_yield", "withholding_rate", "withholding_basis", "score_100"]
+}
