@@ -1,48 +1,51 @@
+---
+name: dividend-income-equity-analysis
+description: 港股、美股和全球红利股分析技能。当用户要求红利分析、股息分析、税后股息率、dividend analysis、分红可持续性或红利陷阱检查时触发。默认投资者为 HK resident individual，普通券商账户，优先使用 IBKR 等券商实际流水。
+---
+
 # Dividend Income Equity Analysis Skill
 
-This skill is a research workflow for analyzing dividend-paying public companies.
+## 技能定位
 
-## Scope
+本技能用于分析上市公司的现金分红价值，重点关注税前股息率、净股息率、过去五年分红历史、管理层资本分配态度、回购质量、财务覆盖能力和未来三年分红可持续性。
 
-The workflow reviews public filings, dividend history, shareholder-return policy, buybacks, financial capacity, withholding treatment, broker-observed dividend cash flow, and future dividend sustainability.
+## 默认假设
 
-## Investor Assumption
+- 投资者为 HK resident individual。
+- 使用普通券商账户持有股票。
+- 投资目标是中长期现金分红收入。
+- 如果用户提供券商流水，券商实际扣税记录优先于理论分类。
+- 本技能默认不处理内地个人港股通渠道，除非用户明确要求。
 
-Default assumption: HK resident individual using a normal brokerage account.
+## 支撑文件读取规则
 
-## Source Priority
+执行分析时按需读取同目录文件：
 
-1. Official company filings and annual reports.
-2. Exchange announcements and regulator filings.
-3. Company investor-relations materials.
-4. Earnings-call transcripts.
-5. Broker cash statement or activity report when the user provides it.
-6. Third-party data only as cross-checks.
+- `workflow.md`：完整研究流程、数据源和红利陷阱检查。
+- `withholding-notes.md`：预扣税和券商实测扣税规则，是税务处理唯一权威源。
+- `scoring.md`：100 分评分模型和评分锚点。
+- `output-template.md`：最终输出模板。
+- `schema.json`：结构化 JSON 输出格式。
+- `examples/example-output-skeleton.md`：输出样例骨架。
 
-## Withholding Priority Rule
+## 数据源优先级
 
-Dividend tax treatment must not rely only on listing venue or legal domicile.
+1. 官方公告和监管披露。
+2. 公司 IR 材料和管理层公开表态。
+3. 用户提供的券商活动流水或现金流水。
+4. 第三方行情和数据平台，仅用于交叉验证。
 
-Use this order when estimating net dividend yield:
+## 必需输出章节
 
-1. Actual broker cash statement for the same investor and same holding channel.
-2. Company dividend announcement and tax note.
-3. Legal domicile, listing structure, and issuer type.
-4. Market-level default assumption.
-
-For mainland-controlled HK-listed issuers, do not assume zero withholding only because the stock trades in Hong Kong. Check legal domicile, dividend announcement wording, HKSCC or custodian treatment, and broker activity.
-
-If the user has observed broker withholding for a stock, use the observed rate in future calculations unless there is later evidence of a change. Current observed-withholding examples from user records include 0941.HK China Mobile and 1919.HK COSCO SHIPPING Holdings.
-
-## Required Sections
-
-1. Company and listing classification.
-2. Dividend tax treatment and broker-observed withholding status.
-3. Current gross and net dividend yield.
-4. Five-year dividend history.
-5. Management capital-allocation attitude.
-6. Buyback quality.
-7. Financial capacity and dividend coverage.
-8. Three-year dividend outlook.
-9. Risk and dividend-trap checklist.
-10. Final research rating.
+1. 执行摘要。
+2. 公司、上市地、注册地和证券结构。
+3. 税务处理和券商实测扣税状态。
+4. 当前税前和税后股息率。
+5. 过去五年分红历史。
+6. 管理层资本分配态度。
+7. 回购质量。
+8. 财务覆盖和分红安全性。
+9. 未来三年 Bear / Base / Bull 分红预测。
+10. 红利陷阱检查。
+11. 评分和组合角色。
+12. 数据来源和不确定性说明。
