@@ -2,6 +2,16 @@
 
 ## 1. Executive Summary
 
+### 1A. Key Metrics at a Glance
+
+If rich visualization or card-style layout is available, render these as four metric cards. If not, use this one-row table.
+
+| TTM Net Yield | Normalized Net Yield | Score / Grade | Portfolio Role |
+|---:|---:|---:|---|
+| | | | |
+
+### 1B. Secondary Summary
+
 - Company:
 - Ticker:
 - Exchange:
@@ -17,6 +27,8 @@
 
 ## 2. Dividend Snapshot
 
+One-sentence takeaway before the table:
+
 | Metric | Value | Comment |
 |---|---:|---|
 | TTM DPS | | |
@@ -29,50 +41,107 @@
 | Dividend type | | |
 | Coverage status | | |
 
-## 3. Company and Listing Structure
+## 3. Standard Charts or Text Fallback
+
+Follow `visual-output-rules.md`.
+
+If rich visualization is available, render these three charts:
+
+1. DPS Structure Chart.
+2. Yield Ladder.
+3. Coverage Chart.
+
+If rich visualization is unavailable, provide the plain-text fallback:
+
+- DPS path:
+- Yield stack:
+- Coverage labels:
+
+Charts are the communication layer. Tables below are the data record.
+
+## 4. Company and Listing Structure
+
+One-sentence takeaway before details.
 
 Describe domicile, issuer type, listing venue, dividend currency, reporting currency, official share count from filings, and whether the security is an H-share, red-chip, ADR, REIT, fund, trust, or ordinary share.
 
-## 4. Dividend Treatment
+## 5. Dividend Treatment
+
+One-sentence takeaway before details.
 
 Read `withholding-notes.md` and apply the priority rule. Explain the basis for the withholding assumption and any uncertainty.
 
-## 5. Dividend Trajectory and Yearly Yield
+If withholding is 0%, state once: "Withholding 0% — gross equals net." Do not repeat Withholding / Net DPS / Net Yield columns in every historical row.
 
-Use `visual-output-rules.md`. Show year-by-year DPS, dividend mix, DPS YoY, yield at current price, yield at year price if available, withholding, net DPS, net yield, dividend type, and quality tag.
+## 6. Dividend Trajectory and Yearly Yield
 
-| Fiscal Year | Total DPS | Base DPS | Special / Variable DPS | DPS YoY | Yield at Current Price | Yield at Year Price | Withholding | Net DPS | Net Yield | Dividend Type | Quality Tag |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
+One-sentence takeaway before the table.
 
-Add a short Dividend Pattern paragraph after the table.
+Use `visual-output-rules.md`. If the full table would exceed seven columns, split into DPS Structure and Yield / Coverage tables.
 
-## 6. Cash-Flow Coverage Bridge
+### 6A. Per-share DPS Structure
 
-| Fiscal Year | Net Income | Operating Cash Flow | Capex | Free Cash Flow | Cash Dividends | Buybacks | Share Issuance | Net Debt Change | FCF / Dividend | Funding Source |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| Fiscal Year | Total DPS | Base DPS | Special / Variable DPS | DPS YoY | Quality Tag | Notes |
+|---|---:|---:|---:|---:|---|---|
+
+### 6B. Yield and Coverage
+
+| Fiscal Year | Yield at Current Price | Yield at Year Price | Payout Ratio | FCF / Dividend | Coverage Label | Comment |
+|---|---:|---:|---:|---:|---|---|
+
+Add a short Dividend Pattern paragraph after the tables.
+
+## 7. Cash-Flow Coverage Bridge
+
+One-sentence takeaway before the tables.
+
+If the bridge exceeds seven columns, split into cash generation and cash return / funding tables.
+
+### 7A. Cash Generation
+
+| Fiscal Year | Net Income | Operating Cash Flow | Capex | Free Cash Flow | FCF Quality | Comment |
+|---|---:|---:|---:|---:|---|---|
+
+### 7B. Cash Return and Funding
+
+| Fiscal Year | Cash Dividends | Buybacks | Share Issuance | Net Debt Change | FCF / Dividend | Funding Source |
+|---|---:|---:|---:|---:|---:|---|
 
 Explain whether dividends were funded by operating free cash flow, cash balance, asset sales, debt, equity issuance, or mixed sources. If FCF is estimated as operating cash flow minus capex, label it as estimated.
 
-## 7. Management Capital Allocation
+## 8. Management Capital Allocation
+
+One-sentence takeaway before details.
 
 Summarize dividend policy, buyback policy, leverage target, reinvestment priority, acquisition policy, share issuance, ATM programs, and whether equity issuance coincides with elevated payout.
 
-## 8. Buyback Quality
+## 9. Buyback Quality
+
+One-sentence takeaway before details.
 
 Assess share-count change, dilution, valuation discipline, whether buybacks are debt-funded, and whether buybacks are offset by share issuance.
 
-## 9. Three-Year Dividend Runway
+## 10. Three-Year Dividend Runway
 
-| Fiscal Year | Scenario | DPS | Net Yield at Current Price | Estimated FCF | Dividend Cash Cost | FCF / Dividend | Balance Sheet Impact | Key Assumptions |
-|---|---|---:|---:|---:|---:|---:|---|---|
+One-sentence takeaway before the table.
+
+| Fiscal Year | Scenario | DPS | Net Yield at Current Price | Estimated FCF | Dividend Cash Cost | FCF / Dividend |
+|---|---|---:|---:|---:|---:|---:|
+
+If more detail is needed, add this assumptions table:
+
+| Fiscal Year | Scenario | Balance Sheet Impact | Key Assumptions |
+|---|---|---|---|
 
 Separate TTM yield from normalized and scenario yield.
 
-## 10. Dividend Trap Checklist
+## 11. Dividend Trap Checklist
+
+One-sentence takeaway before the table.
 
 List each red flag and the evidence for or against it. Include equity issuance or ATM program concurrent with elevated payout when relevant.
 
-## 11. Visual Summary
+## 12. Visual Summary
 
 Add a compact visual summary:
 
@@ -80,7 +149,11 @@ Add a compact visual summary:
 - Yield normalization: TTM vs normalized vs bear/base/bull.
 - Coverage labels by year: Strong / Adequate / Weak.
 
-## 12. Score, Required Ratings, and Portfolio Role
+If charts were already rendered, keep this section brief and use it as a written recap.
+
+## 13. Score, Required Ratings, and Portfolio Role
+
+One-sentence takeaway before the score table.
 
 Use `scoring.md` and show points by module.
 
@@ -93,6 +166,6 @@ Always output the six required ratings:
 - Three-Year Dividend Outlook: Grow / Stable / Decline / High Uncertainty
 - Portfolio Role: Core income / Cyclical income / Opportunistic / Watchlist / Avoid
 
-## 13. Sources and Data Quality
+## 14. Sources and Data Quality
 
 List official filings, announcements, broker records, and third-party cross-checks used. State any missing data or fallback calculations clearly.
