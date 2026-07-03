@@ -28,11 +28,11 @@
         "type": "object",
         "properties": {
           "fiscal_year": {"type": "string"},
-          "dps": {"type": "number"},
-          "ordinary_dps": {"type": "number"},
-          "special_dps": {"type": "number"},
+          "dps": {"type": ["number", "null"]},
+          "ordinary_dps": {"type": ["number", "null"]},
+          "special_dps": {"type": ["number", "null"]},
           "currency": {"type": "string"},
-          "payout_ratio": {"type": ["number", "null"},
+          "payout_ratio": {"type": ["number", "null"]},
           "fcf_payout_ratio": {"type": ["number", "null"]},
           "notes": {"type": "string"}
         },
