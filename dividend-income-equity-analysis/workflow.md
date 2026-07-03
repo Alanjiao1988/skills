@@ -50,17 +50,23 @@ Read `withholding-notes.md` before calculating net yield. Use broker-observed wi
 
 Show gross DPS, assumed withholding rate, withholding basis, net DPS, gross yield, and net yield.
 
+If broker records are used, identify whether the cash line is a normal dividend, payment in lieu, mixed, or unknown.
+
 ## Step 3: Dividend Record
 
-For full analysis, follow `visual-output-rules.md` and `output-template.md`. Build the Dividend Snapshot and Dividend Trajectory tables before long-form discussion.
+For full analysis, follow `visual-output-rules.md` and `output-template.md`. Build the Dividend Snapshot and the DPS structure part of the Dividend Trajectory before long-form discussion.
 
 Separate ordinary dividends from special or variable dividends. Do not annualize one-off special dividends.
 
+The Yield and Coverage part of the Dividend Trajectory may be completed or backfilled after Step 4, because FCF / Dividend and Coverage Label depend on the cash-flow bridge.
+
 ## Step 4: Cash-Flow Coverage
 
-For full analysis, build the Cash-Flow Coverage Bridge from `output-template.md`.
+For full analysis, build the Cash-Flow Coverage Bridge using the structures in `visual-output-rules.md`.
 
 Use company-reported free cash flow if available. If not available, estimate free cash flow as operating cash flow minus capex and label it as estimated. EBITDA coverage can be mentioned only as a secondary cross-check.
+
+After this step, return to Step 3 and fill any missing FCF / Dividend and Coverage Label fields in the Dividend Trajectory.
 
 ## Step 5: Capital Allocation
 
@@ -70,7 +76,7 @@ Identify whether the company has a fixed dividend, progressive dividend, payout-
 
 ## Step 6: Three-Year Outlook
 
-Build bear, base, and bull cases for the next three fiscal years. Follow the Three-Year Dividend Runway table in `output-template.md`, including DPS, net yield at current price, estimated FCF, dividend cash cost, FCF / Dividend, balance-sheet impact, and assumptions.
+Build bear, base, and bull cases for the next three fiscal years. Follow the Three-Year Dividend Runway table in `visual-output-rules.md`, including DPS, net yield at current price, estimated FCF, dividend cash cost, FCF / Dividend, balance-sheet impact, and assumptions.
 
 ## Step 7: Dividend Trap Checklist
 
