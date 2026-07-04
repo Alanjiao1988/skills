@@ -14,6 +14,7 @@
     "net_yield": {"type": "number", "description": "Decimal form, e.g. 0.054 for 5.4%"},
     "normalized_dps": {"type": ["number", "null"]},
     "normalized_net_yield": {"type": ["number", "null"], "description": "Decimal form. If normalized yield is a range, use midpoint here and put display range in normalized_net_yield_range."},
+    "expected_buy_zone": {"type": "string"},
     "withholding_rate": {"type": "number", "description": "Decimal form, e.g. 0.10 for 10%"},
     "withholding_basis": {"type": "string", "enum": ["broker_observed", "company_announcement", "legal_structure", "market_default", "unknown"]},
     "broker_observed_withholding": {"type": "string", "enum": ["Yes", "No", "Unknown"]},
@@ -33,7 +34,8 @@
         "normalized_net_yield": {"type": ["number", "null"], "description": "Decimal form or midpoint if range is described separately"},
         "normalized_net_yield_range": {"type": "string", "description": "Display range such as 0.05-0.07 or 5%-7%"},
         "score_grade": {"type": "object", "properties": {"score": {"type": "number"}, "grade": {"type": "string", "enum": ["A", "B", "C", "D", "E"]}}},
-        "portfolio_role": {"type": "string", "enum": ["Core income", "Cyclical income", "Opportunistic", "Watchlist", "Avoid"]}
+        "portfolio_role": {"type": "string", "enum": ["Core income", "Cyclical income", "Opportunistic", "Watchlist", "Avoid"]},
+        "expected_buy_zone": {"type": "string"}
       }
     },
     "rendering": {
@@ -41,7 +43,7 @@
       "properties": {
         "rich_visualization_available": {"type": "boolean"},
         "visual_mode": {"type": "string", "enum": ["rich_charts", "plain_text_fallback"]},
-        "charts_required": {"type": "array", "items": {"type": "string", "enum": ["dps_structure_chart", "yield_ladder", "coverage_chart"]}}
+        "charts_required": {"type": "array", "items": {"type": "string", "enum": ["dps_structure_chart", "yield_ladder", "coverage_chart", "buy_zone_ladder"]}}
       }
     },
     "dividend_snapshot": {
@@ -119,11 +121,30 @@
         "required": ["fiscal_year", "scenario", "key_assumptions"]
       }
     },
+    "buy_zone": {
+      "type": "object",
+      "properties": {
+        "dps_basis": {"type": "string", "enum": ["TTM", "normalized", "bear", "base", "bull", "mixed", "unknown"]},
+        "net_dps_used": {"type": ["number", "null"]},
+        "required_net_yield": {"type": ["number", "null"], "description": "Decimal form"},
+        "required_net_yield_range": {"type": "string"},
+        "formula": {"type": "string"},
+        "fair_value_zone": {"type": "string"},
+        "accumulation_zone": {"type": "string"},
+        "strong_buy_zone": {"type": "string"},
+        "value_trap_zone": {"type": "string"},
+        "current_price_position": {"type": "string", "enum": ["above_buy_zone", "inside_buy_zone", "below_buy_zone", "inside_value_trap_zone", "unknown"]},
+        "historical_yield_band_comment": {"type": "string"},
+        "historical_price_context_comment": {"type": "string"},
+        "missing_inputs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
     "visual_summary": {
       "type": "object",
       "properties": {
         "dps_path": {"type": "string"},
         "yield_normalization": {"type": "string"},
+        "buy_zone_ladder": {"type": "string"},
         "coverage_labels": {"type": "string"}
       }
     },
