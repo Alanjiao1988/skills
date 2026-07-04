@@ -106,6 +106,7 @@ Requirements:
 - Use normalized DPS for fair and accumulation zones.
 - Use bear or conservative DPS for strong-buy safety-margin testing.
 - If `B` is unavailable, use a conservative haircut to N and label the haircut explicitly.
+- `B` must be less than or equal to `N`. If `B > N`, treat the inputs as invalid and explain the data problem.
 
 Boundary formulas:
 
@@ -113,9 +114,15 @@ Boundary formulas:
 Too expensive boundary = N / r_low
 Fair lower boundary = N / r_high
 Fair upper boundary = N / r_low
-Accumulation lower boundary = B / r_low
+Accumulation lower boundary = B / r_high
 Accumulation upper boundary = N / r_high
-Strong buy boundary = B / r_low
+Strong buy boundary = B / r_high
+```
+
+These formulas create a monotonic boundary set:
+
+```text
+N / r_low >= N / r_high >= B / r_high
 ```
 
 Zone mapping:
@@ -124,12 +131,12 @@ Zone mapping:
 |---|---|---|
 | Too expensive / avoid adding | Price > N / r_low | Normalized yield is below minimum required yield. |
 | Fair value / hold | N / r_high < Price <= N / r_low | Normalized yield is within required range but margin of safety is limited. |
-| Accumulation zone | B / r_low < Price <= N / r_high | Normalized yield is attractive and bear-case yield is approaching acceptable. |
-| Strong buy zone | Price <= B / r_low | Bear-case DPS still meets the minimum required yield. |
+| Accumulation zone | B / r_high < Price <= N / r_high | Normalized yield is attractive and bear-case yield is approaching the high-end required yield. |
+| Strong buy zone | Price <= B / r_high | Bear-case DPS still meets the high-end required yield. |
 
-If B is greater than N, treat B as invalid and explain the data problem. Bear-case DPS should not exceed normalized DPS.
+If B equals N, the accumulation zone becomes empty because bear-case DPS equals normalized DPS. In that case, state that there is no separate accumulation band and let fair value connect directly to the strong-buy boundary.
 
-If the deterministic boundaries overlap or produce nonsensical ranges because DPS is unstable, output "buy zone cannot be responsibly estimated" and list missing or invalid inputs.
+If B is missing, r_low/r_high is missing, or the dividend inputs are not credible, output "buy zone cannot be responsibly estimated" and list missing or invalid inputs.
 
 ## 5. Value-Trap Veto
 
@@ -195,8 +202,8 @@ Use this table after applying the value-trap veto.
 |---|---:|---:|---|---|---|
 | Too expensive / avoid adding | Price > N / r_low | Below required range | Normalized DPS | Yield below required return | Avoid adding |
 | Fair value / hold | N / r_high < Price <= N / r_low | Required range | Normalized DPS | Reasonable yield, limited MOS | Hold / small add only |
-| Accumulation zone | B / r_low < Price <= N / r_high | Attractive normalized yield | Normalized + bear DPS | Required yield met with acceptable coverage | Gradual buy |
-| Strong buy zone | Price <= B / r_low | Bear-case yield meets minimum requirement | Bear or conservative DPS | Strong coverage and balance sheet required | Higher conviction buy |
+| Accumulation zone | B / r_high < Price <= N / r_high | Attractive normalized yield | Normalized + bear DPS | Required yield met with acceptable coverage | Gradual buy |
+| Strong buy zone | Price <= B / r_high | Bear-case yield meets high-end required yield | Bear or conservative DPS | Strong coverage and balance sheet required | Higher conviction buy |
 
 Also output a separate line:
 
