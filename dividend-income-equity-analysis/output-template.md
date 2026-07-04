@@ -1,6 +1,6 @@
 # Output Template
 
-This file is the output section order. Detailed table structures live in `visual-output-rules.md`; do not duplicate or redefine them here.
+This file is the output section order. Detailed table structures live in `visual-output-rules.md`; buy-zone structures live in `buy-zone.md`; do not duplicate or redefine them here.
 
 ## 1. Executive Summary
 
@@ -24,6 +24,7 @@ If normalized yield is a range, display it directly as `x-y%`.
 - TTM gross yield:
 - TTM net yield:
 - Normalized net yield:
+- Expected buy zone:
 - Withholding rate:
 - Withholding basis:
 - Broker-observed withholding: Yes / No / Unknown
@@ -104,23 +105,41 @@ Use `visual-output-rules.md` Section 8 for the authoritative runway table struct
 
 Separate TTM yield from normalized and scenario yield.
 
-## 11. Dividend Trap Checklist
+## 11. Expected Buy Zone
+
+One-sentence takeaway before the tables.
+
+Read `buy-zone.md` and estimate an expected buy zone using normalized net DPS, required net yield, historical yield bands, historical price context, and downside safety checks.
+
+At minimum include:
+
+- DPS basis used: TTM / normalized / bear / base / bull.
+- Required net yield assumptions.
+- Formula: Buy Price = Net DPS / Required Net Yield.
+- Historical price and yield context.
+- Buy-zone table: too expensive, fair / hold, accumulation zone, strong buy zone, value-trap warning if applicable.
+- Whether the current price is above, inside, or below the income entry zone.
+
+If data is insufficient, state: "Buy zone cannot be responsibly estimated" and list missing inputs.
+
+## 12. Dividend Trap Checklist
 
 One-sentence takeaway before the table.
 
 List each red flag and the evidence for or against it. Include equity issuance or ATM program concurrent with elevated payout when relevant.
 
-## 12. Visual Summary
+## 13. Visual Summary
 
 Add a compact visual summary:
 
 - DPS path:
 - Yield normalization: TTM vs normalized vs bear/base/bull.
+- Buy-zone ladder: current price vs fair / accumulation / strong-buy zones.
 - Coverage labels by year: Strong / Adequate / Weak.
 
 If charts were already rendered, keep this section brief and use it as a written recap.
 
-## 13. Score, Required Ratings, and Portfolio Role
+## 14. Score, Required Ratings, and Portfolio Role
 
 One-sentence takeaway before the score table.
 
@@ -135,6 +154,6 @@ Always output the six required ratings:
 - Three-Year Dividend Outlook: Grow / Stable / Decline / High Uncertainty
 - Portfolio Role: Core income / Cyclical income / Opportunistic / Watchlist / Avoid
 
-## 14. Sources and Data Quality
+## 15. Sources and Data Quality
 
 List official filings, announcements, broker records, and third-party cross-checks used. State any missing data or fallback calculations clearly.
