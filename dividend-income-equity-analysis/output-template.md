@@ -39,16 +39,18 @@ One-sentence takeaway before the table. Use the Dividend Snapshot table defined 
 
 Follow `visual-output-rules.md`.
 
-If rich visualization is available, render the three standard charts:
+If rich visualization is available, render the standard charts:
 
 1. DPS Structure Chart.
 2. Yield Ladder.
 3. Coverage Chart.
+4. Buy-Zone Ladder.
 
 If rich visualization is unavailable, provide the plain-text fallback:
 
 - DPS path:
 - Yield stack:
+- Buy-zone ladder:
 - Coverage labels:
 
 Charts are the communication layer. Tables below are the data record.
@@ -101,7 +103,7 @@ Assess share-count change, dilution, valuation discipline, whether buybacks are 
 
 One-sentence takeaway before the table.
 
-Use `visual-output-rules.md` Section 8 for the authoritative runway table structure. If more detail is needed, add a separate assumptions table for Balance Sheet Impact and Key Assumptions.
+Use `visual-output-rules.md` Section 9 for the authoritative runway table structure. If more detail is needed, add a separate assumptions table for Balance Sheet Impact and Key Assumptions.
 
 Separate TTM yield from normalized and scenario yield.
 
