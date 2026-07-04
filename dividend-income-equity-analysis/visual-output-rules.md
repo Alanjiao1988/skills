@@ -5,7 +5,7 @@ This file defines the required visual and intuitive outputs for dividend analysi
 The goal is to make dividend reports readable in this order:
 
 1. Four key numbers.
-2. Three standard charts when visualization is available.
+2. Standard charts when visualization is available.
 3. Slim tables as data records.
 4. Long-form explanation only after the reader sees the shape of the dividend story.
 
@@ -37,9 +37,9 @@ Rules:
 - Portfolio Role must use the required rating vocabulary.
 - If withholding treatment is the central thesis, add Withholding Efficiency as a fifth metric only when it improves clarity.
 
-## 3. Three Standard Charts
+## 3. Standard Charts
 
-These charts are required in full analysis when rich visualization is available. In plain-text environments, provide the text fallback in Section 7.
+These charts are required in full analysis when rich visualization is available. In plain-text environments, provide the text fallback in Section 8.
 
 ### 3.1 DPS Structure Chart
 
@@ -76,6 +76,21 @@ Show:
 - FCF / Dividend multiple as a label.
 
 Purpose: show payment capacity and whether payout is funded by real cash flow.
+
+### 3.4 Buy-Zone Ladder
+
+Use a horizontal ladder or band chart.
+
+Show:
+
+- Current price.
+- Historical fair range if available.
+- Fair / hold zone.
+- Accumulation zone.
+- Strong buy zone.
+- Value-trap warning zone if applicable.
+
+Purpose: translate dividend yield and historical price context into a disciplined income entry zone.
 
 ## 4. Dividend Trajectory Tables
 
@@ -133,17 +148,34 @@ Funding Source should be Operating FCF, Cash Balance, Asset Sale, Debt, Equity I
 - Tables are the data record. Charts are the communication layer.
 - Partial-year data must be labeled clearly as partial and must not be annualized unless the method is explicitly stated.
 
-## 7. Plain-Text Fallback Visuals
+## 7. Buy-Zone Visual and Tables
+
+Use `buy-zone.md` as the authoritative logic source.
+
+### Historical Price and Yield Context
+
+| Metric | Price / Level | Current Position | Comment |
+|---|---:|---:|---|
+
+### Buy-Zone Table
+
+| Zone | Price Range | Implied Net Yield | DPS Basis | Condition Required | Action View |
+|---|---:|---:|---|---|---|
+
+If rich visualization is available, also render the Buy-Zone Ladder. If unavailable, use the text fallback in Section 8.
+
+## 8. Plain-Text Fallback Visuals
 
 Use these when rich visualization is unavailable.
 
 - DPS path: `2022 1.42 -> 2023 6.29 -> 2024 5.77 -> 2025 2.93`.
 - Yield stack: `TTM yield 10.7% | normalized 5-7% | bear 2-3% | base 4-6%`.
 - Coverage labels: `2023 Strong | 2024 Adequate | 2025 Adequate | 2026 Peak-cycle / Uncertain`.
+- Buy-zone ladder: `Current 100 | Fair 90-100 | Accumulate 75-90 | Strong buy <75 | Trap risk if yield reflects likely cut`.
 
 Do not replace tables with text visuals. Use text visuals to make tables easier to understand when charts are unavailable.
 
-## 8. Three-Year Dividend Runway
+## 9. Three-Year Dividend Runway
 
 The forecast must include both per-share dividends and cash coverage.
 
