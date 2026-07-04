@@ -172,6 +172,8 @@ Use `visual-output-rules.md` Section 9 for authoritative runway structure.
 
 Takeaway: The checklist separates high yield from sustainable income and acts as the buy-zone veto gate.
 
+Keep this checklist aligned with `workflow.md` Step 7; do not shorten it in real outputs.
+
 | Red Flag | Status | Evidence |
 |---|---|---|
 | High yield from price fall | Unknown | Placeholder |
@@ -227,8 +229,8 @@ Boundary inputs:
 |---|---:|---:|---|---|---|
 | Too expensive / avoid adding | Price > N / r_low | Below required range | Normalized DPS | Yield below required return | Avoid adding |
 | Fair value / hold | N / r_high < Price <= N / r_low | Required range | Normalized DPS | Fair yield, limited MOS | Hold |
-| Accumulation zone | B / r_low < Price <= N / r_high | Attractive normalized yield | Normalized + bear DPS | Required yield met | Gradual buy |
-| Strong buy zone | Price <= B / r_low | Bear-case yield meets minimum | Bear / conservative DPS | Strong coverage required | Higher conviction buy |
+| Accumulation zone | B / r_high < Price <= N / r_high | Attractive normalized yield | Normalized + bear DPS | Required yield met | Gradual buy |
+| Strong buy zone | Price <= B / r_high | Bear-case yield meets high-end requirement | Bear / conservative DPS | Strong coverage required | Higher conviction buy |
 
 Value-trap veto: Not triggered / Triggered / Unclear.
 
