@@ -88,9 +88,9 @@ Show:
 - Fair / hold zone.
 - Accumulation zone.
 - Strong buy zone.
-- Value-trap warning zone if applicable.
+- Value-trap veto status, shown as Not triggered / Triggered / Unclear.
 
-Purpose: translate dividend yield and historical price context into a disciplined income entry zone.
+Purpose: translate dividend yield and historical price context into a disciplined income entry zone. Do not show value trap as a price band.
 
 ## 4. Dividend Trajectory Tables
 
@@ -162,6 +162,12 @@ Use `buy-zone.md` as the authoritative logic source.
 | Zone | Price Range | Implied Net Yield | DPS Basis | Condition Required | Action View |
 |---|---:|---:|---|---|---|
 
+Also show value-trap veto status separately:
+
+```text
+Value-trap veto: Not triggered / Triggered / Unclear
+```
+
 If rich visualization is available, also render the Buy-Zone Ladder. If unavailable, use the text fallback in Section 8.
 
 ## 8. Plain-Text Fallback Visuals
@@ -171,7 +177,7 @@ Use these when rich visualization is unavailable.
 - DPS path: `2022 1.42 -> 2023 6.29 -> 2024 5.77 -> 2025 2.93`.
 - Yield stack: `TTM yield 10.7% | normalized 5-7% | bear 2-3% | base 4-6%`.
 - Coverage labels: `2023 Strong | 2024 Adequate | 2025 Adequate | 2026 Peak-cycle / Uncertain`.
-- Buy-zone ladder: `Current 100 | Fair 90-100 | Accumulate 75-90 | Strong buy <75 | Trap risk if yield reflects likely cut`.
+- Buy-zone ladder: `Current 100 | Fair 90-100 | Accumulate 75-90 | Strong buy <75 | Veto: not triggered`.
 
 Do not replace tables with text visuals. Use text visuals to make tables easier to understand when charts are unavailable.
 
