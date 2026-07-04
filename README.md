@@ -26,6 +26,26 @@ dividend-income-equity-analysis/
     └── example-output-skeleton.md
 ```
 
+## ChatGPT Custom GPT Support
+
+ChatGPT-specific files are kept outside the skill directory:
+
+```text
+gpt-header.md
+build-gpt-instructions.sh
+chatgpt-custom-gpt-instructions.md
+```
+
+Use `gpt-header.md` as the Custom GPT instruction header and upload the canonical skill files as Knowledge.
+
+To generate a single pasteable Custom GPT instruction file:
+
+```bash
+bash build-gpt-instructions.sh
+```
+
+Do not hand-copy skill rules into the ChatGPT file; update canonical modules under `dividend-income-equity-analysis/` and regenerate.
+
 ## Focus
 
 The skill focuses on:
@@ -46,4 +66,6 @@ The skill focuses on:
 - Broker-observed withholding has priority over theoretical classification only when the broker record is a true dividend line.
 - Payment-in-lieu records do not constitute withholding-rate evidence.
 - TTM yield must be separated from normalized yield.
+- Run the dividend-trap checklist before treating any buy-zone output as actionable.
+- Buy-zone analysis must use deterministic boundaries from `buy-zone.md`.
 - Buy-zone analysis must not use peak-cycle DPS as the base-case anchor unless that DPS is demonstrably sustainable.
