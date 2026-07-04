@@ -12,6 +12,7 @@ Always record the data date.
 - Third-party data is for cross-checks only.
 - User broker statement is the priority source for actual received dividend and actual withholding.
 - Use official share count from filings when available. Do not infer market capitalization from net income divided by EPS unless no filing share-count data is available.
+- Historical price data used for buy-zone analysis must state period, frequency, source, and whether the price is year-end, average, close, high-low range, or adjusted price.
 
 ## Search Instructions
 
@@ -25,6 +26,8 @@ For HK-listed stocks, search HKEXnews / issuer announcements for:
 - latest dividend announcement
 - tax note in dividend announcement
 - share buyback announcement
+- historical dividend announcements
+- historical share price or exchange price data when available
 
 For US-listed stocks, search SEC EDGAR and company investor relations for 10-K, 10-Q, 8-K, proxy, dividend declaration, buyback authorization, latest 10-Q cover page share count, cash-flow statement, capex, share issuance, and ATM or shelf-registration filings.
 
@@ -78,7 +81,29 @@ Identify whether the company has a fixed dividend, progressive dividend, payout-
 
 Build bear, base, and bull cases for the next three fiscal years. Follow the Three-Year Dividend Runway table in `visual-output-rules.md`, including DPS, net yield at current price, estimated FCF, dividend cash cost, FCF / Dividend, balance-sheet impact, and assumptions.
 
-## Step 7: Dividend Trap Checklist
+## Step 7: Expected Buy Zone
+
+Read `buy-zone.md` and build an expected buy-zone analysis.
+
+Use:
+
+- Current price and as-of date.
+- Historical price range, year-end price, average price, or high-low range.
+- Historical gross and net dividend yield range.
+- Normalized net DPS.
+- Bear, base, and bull forecast net DPS.
+- Required net yield based on dividend profile and risk.
+- FCF coverage, balance-sheet safety, and dividend visibility.
+
+Core formula:
+
+```text
+Buy Price = Net DPS / Required Net Yield
+```
+
+State whether the buy-zone uses TTM DPS, normalized DPS, bear DPS, base DPS, or bull DPS. Do not use peak-cycle DPS as the base-case buy-zone anchor unless it is demonstrably sustainable.
+
+## Step 8: Dividend Trap Checklist
 
 Check at least:
 
