@@ -34,6 +34,7 @@ ChatGPT-specific files are kept outside the skill directory:
 gpt-header.md
 build-gpt-instructions.sh
 chatgpt-custom-gpt-instructions.md
+dist/
 ```
 
 Use `gpt-header.md` as the Custom GPT instruction header and upload the canonical skill files as Knowledge.
@@ -43,6 +44,14 @@ To generate a single pasteable Custom GPT instruction file:
 ```bash
 bash build-gpt-instructions.sh
 ```
+
+The generated output is written to:
+
+```text
+dist/chatgpt-custom-gpt-instructions.md
+```
+
+The root-level `chatgpt-custom-gpt-instructions.md` is a setup guide and should not be overwritten by the builder.
 
 Do not hand-copy skill rules into the ChatGPT file; update canonical modules under `dividend-income-equity-analysis/` and regenerate.
 
@@ -67,5 +76,6 @@ The skill focuses on:
 - Payment-in-lieu records do not constitute withholding-rate evidence.
 - TTM yield must be separated from normalized yield.
 - Run the dividend-trap checklist before treating any buy-zone output as actionable.
-- Buy-zone analysis must use deterministic boundaries from `buy-zone.md`.
+- Buy-zone analysis must use deterministic monotonic boundaries from `buy-zone.md`.
+- Strong buy boundary uses bear-case net DPS divided by the high end of the required yield range: `B / r_high`.
 - Buy-zone analysis must not use peak-cycle DPS as the base-case anchor unless that DPS is demonstrably sustainable.
