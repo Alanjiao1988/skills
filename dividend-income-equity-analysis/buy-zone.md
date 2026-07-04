@@ -19,6 +19,7 @@ Required data:
 - Historical gross and net dividend yield range.
 - Historical dividend-yield percentiles when data is available.
 - Sector, cycle, balance-sheet, and FCF coverage context.
+- Dividend Trap Checklist result.
 
 Optional data:
 
@@ -84,7 +85,75 @@ Adjust required yield downward only when:
 - Dividend policy is clear and credible.
 - The company has durable reinvestment or buyback support.
 
-## 4. Historical Yield Band Cross-Check
+## 4. Deterministic Buy-Zone Boundary Rules
+
+Use these boundary rules so the same inputs produce the same buy-zone output.
+
+Definitions:
+
+```text
+N = normalized net DPS
+B = bear-case net DPS, or conservative trough net DPS if bear-case DPS is unavailable
+r_low = lower bound of required net yield range
+r_high = upper bound of required net yield range
+P_current = current share price
+```
+
+Requirements:
+
+- `r_low` and `r_high` must be expressed as decimals, e.g. 0.06 for 6%.
+- `r_high` must be greater than `r_low`.
+- Use normalized DPS for fair and accumulation zones.
+- Use bear or conservative DPS for strong-buy safety-margin testing.
+- If `B` is unavailable, use a conservative haircut to N and label the haircut explicitly.
+
+Boundary formulas:
+
+```text
+Too expensive boundary = N / r_low
+Fair lower boundary = N / r_high
+Fair upper boundary = N / r_low
+Accumulation lower boundary = B / r_low
+Accumulation upper boundary = N / r_high
+Strong buy boundary = B / r_low
+```
+
+Zone mapping:
+
+| Zone | Deterministic Boundary | Interpretation |
+|---|---|---|
+| Too expensive / avoid adding | Price > N / r_low | Normalized yield is below minimum required yield. |
+| Fair value / hold | N / r_high < Price <= N / r_low | Normalized yield is within required range but margin of safety is limited. |
+| Accumulation zone | B / r_low < Price <= N / r_high | Normalized yield is attractive and bear-case yield is approaching acceptable. |
+| Strong buy zone | Price <= B / r_low | Bear-case DPS still meets the minimum required yield. |
+
+If B is greater than N, treat B as invalid and explain the data problem. Bear-case DPS should not exceed normalized DPS.
+
+If the deterministic boundaries overlap or produce nonsensical ranges because DPS is unstable, output "buy zone cannot be responsibly estimated" and list missing or invalid inputs.
+
+## 5. Value-Trap Veto
+
+Value trap is not a price zone. It is a veto condition.
+
+If any major value-trap condition is triggered, all buy zones are suspended until the condition is resolved or explicitly treated as a special situation.
+
+Major veto conditions include:
+
+- Dividend likely to be cut or suspended.
+- Normalized FCF / Dividend below 1.0x without a credible recovery path.
+- Dividend funded by debt, equity issuance, or asset sales rather than recurring FCF.
+- Balance sheet stress or near-term refinancing wall.
+- Regulatory restriction or policy change that blocks payout.
+- Peak-cycle dividend being used as recurring DPS.
+- Equity issuance or ATM program concurrent with elevated payout and unclear capital need.
+
+Required wording when triggered:
+
+```text
+Value-trap veto triggered: buy-zone output is suspended. High implied yield should not be treated as an entry signal until the following conditions are resolved: ...
+```
+
+## 6. Historical Yield Band Cross-Check
 
 Build a historical yield band when data is available.
 
@@ -100,7 +169,7 @@ Interpretation:
 - Current yield in the top quartile of historical range: potentially attractive, but check whether the market is pricing in a dividend cut.
 - Current yield far above history: either rare opportunity or dividend trap. Use FCF coverage and balance sheet to decide.
 
-## 5. Historical Price Context
+## 7. Historical Price Context
 
 Use historical price levels as a secondary anchor, not the primary anchor.
 
@@ -116,19 +185,26 @@ Use historical price levels as a secondary anchor, not the primary anchor.
 
 Historical price can show sentiment and cyclicality, but it does not determine dividend value by itself. A stock can be cheap versus history and still be unattractive if normalized DPS is falling.
 
-## 6. Buy-Zone Table
+## 8. Buy-Zone Table
 
 Every full dividend analysis should include a buy-zone table unless the user explicitly asks not to.
 
+Use this table after applying the value-trap veto.
+
 | Zone | Price Range | Implied Net Yield | DPS Basis | Condition Required | Action View |
 |---|---:|---:|---|---|---|
-| Avoid / too expensive | | | Current or normalized DPS | Yield below required return or weak MOS | Avoid adding |
-| Fair value / hold | | | Normalized DPS | Reasonable yield but limited MOS | Hold / small add only |
-| Accumulation zone | | | Base normalized DPS | Required yield met with acceptable coverage | Gradual buy |
-| Strong buy zone | | | Bear or conservative DPS | High yield with strong coverage and balance sheet | Higher conviction buy |
-| Value trap zone | | | Distressed DPS | High yield caused by likely cut or funding stress | Avoid unless special situation |
+| Too expensive / avoid adding | Price > N / r_low | Below required range | Normalized DPS | Yield below required return | Avoid adding |
+| Fair value / hold | N / r_high < Price <= N / r_low | Required range | Normalized DPS | Reasonable yield, limited MOS | Hold / small add only |
+| Accumulation zone | B / r_low < Price <= N / r_high | Attractive normalized yield | Normalized + bear DPS | Required yield met with acceptable coverage | Gradual buy |
+| Strong buy zone | Price <= B / r_low | Bear-case yield meets minimum requirement | Bear or conservative DPS | Strong coverage and balance sheet required | Higher conviction buy |
 
-## 7. Safety-Margin Checks
+Also output a separate line:
+
+```text
+Value-trap veto: Not triggered / Triggered / Unclear
+```
+
+## 9. Safety-Margin Checks
 
 Before stating a buy zone, check:
 
@@ -139,7 +215,7 @@ Before stating a buy zone, check:
 - Is current price already above the fair value range implied by normalized net yield?
 - Is the stock cheap because of a temporary cycle issue or because the dividend is likely to be cut?
 
-## 8. Required Output Language
+## 10. Required Output Language
 
 Use disciplined language:
 
@@ -149,7 +225,7 @@ Use disciplined language:
 - Never imply that a high yield alone is a buy signal.
 - If data is insufficient, output "buy zone cannot be responsibly estimated" and list the missing inputs.
 
-## 9. Visual Output
+## 11. Visual Output
 
 When rich visualization is available, add a Buy-Zone Ladder:
 
@@ -157,15 +233,15 @@ When rich visualization is available, add a Buy-Zone Ladder:
 - Fair-value zone.
 - Accumulation zone.
 - Strong buy zone.
-- Value-trap warning zone if applicable.
+- Value-trap veto status.
 
 When rich visualization is unavailable, use a compact text fallback:
 
 ```text
-Buy-zone ladder: Current 100 | Fair 90-100 | Accumulate 75-90 | Strong buy <75 | Trap risk if yield reflects likely cut
+Buy-zone ladder: Current 100 | Fair 90-100 | Accumulate 75-90 | Strong buy <75 | Veto: not triggered
 ```
 
-## 10. Relationship with DDM or Other Valuation Skills
+## 12. Relationship with DDM or Other Valuation Skills
 
 This buy-zone framework is not a full DDM valuation and should not replace a dedicated valuation model.
 
