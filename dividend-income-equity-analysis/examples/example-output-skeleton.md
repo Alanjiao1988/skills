@@ -22,6 +22,7 @@ Use current sources, current price, official filings, broker statements, and the
 - TTM gross yield: 0.0%
 - TTM net yield: 0.0%
 - Normalized net yield: 0.0%-0.0%
+- Expected buy zone: HKD 0.00-0.00
 - Withholding rate: 0.0%
 - Withholding basis: unknown
 - Broker-observed withholding: Unknown
@@ -53,11 +54,13 @@ If rich visualization is available, render:
 1. DPS Structure Chart.
 2. Yield Ladder.
 3. Coverage Chart.
+4. Buy-Zone Ladder.
 
 Plain-text fallback:
 
 - DPS path: `FY-4 0.00 -> FY-3 0.00 -> FY-2 0.00 -> FY-1 0.00 -> FY0 0.00`
 - Yield stack: `TTM 0.0% | normalized 0.0%-0.0% | bear 0.0% | base 0.0% | bull 0.0%`
+- Buy-zone ladder: `Current 0.00 | Fair 0.00-0.00 | Accumulate 0.00-0.00 | Strong buy <0.00`
 - Coverage labels: `FY-4 N/A | FY-3 N/A | FY-2 N/A | FY-1 N/A | FY0 N/A`
 
 ## 4. Company and Listing Structure
@@ -150,7 +153,7 @@ Assess share-count change, dilution, valuation discipline, whether buybacks are 
 
 Takeaway: The runway converts dividend scenarios into net yield and cash-flow coverage.
 
-Use `visual-output-rules.md` Section 8 for authoritative runway structure.
+Use `visual-output-rules.md` Section 9 for authoritative runway structure.
 
 | Fiscal Year | Scenario | DPS | Net Yield at Current Price | Estimated FCF | Dividend Cash Cost | FCF / Dividend |
 |---|---|---:|---:|---:|---:|---:|
@@ -164,15 +167,42 @@ Use `visual-output-rules.md` Section 8 for authoritative runway structure.
 | FY+3 | Base | N/A | N/A | N/A | N/A | N/A |
 | FY+3 | Bull | N/A | N/A | N/A | N/A | N/A |
 
-Assumptions table if needed:
+## 11. Expected Buy Zone
 
-| Fiscal Year | Scenario | Balance Sheet Impact | Key Assumptions |
-|---|---|---|---|
-| FY+1 | Bear | Placeholder | Placeholder |
-| FY+1 | Base | Placeholder | Placeholder |
-| FY+1 | Bull | Placeholder | Placeholder |
+Takeaway: The buy zone translates normalized net DPS and required net yield into an income entry range.
 
-## 11. Dividend Trap Checklist
+Use `buy-zone.md` for authoritative buy-zone logic.
+
+Formula:
+
+```text
+Buy Price = Net DPS / Required Net Yield
+```
+
+### 11A. Historical Price and Yield Context
+
+| Metric | Price / Level | Current Position | Comment |
+|---|---:|---:|---|
+| Current price | 0.00 | N/A | Placeholder |
+| 52-week high | N/A | N/A | Placeholder |
+| 52-week low | N/A | N/A | Placeholder |
+| 3-year median | N/A | N/A | Placeholder |
+| 5-year median | N/A | N/A | Placeholder |
+| Historical net-yield range | N/A | N/A | Placeholder |
+
+### 11B. Buy-Zone Table
+
+| Zone | Price Range | Implied Net Yield | DPS Basis | Condition Required | Action View |
+|---|---:|---:|---|---|---|
+| Too expensive | N/A | N/A | Normalized | Yield below required return | Avoid adding |
+| Fair / hold | N/A | N/A | Normalized | Fair yield, limited margin of safety | Hold |
+| Accumulation zone | N/A | N/A | Base normalized | Required yield met | Gradual buy |
+| Strong buy zone | N/A | N/A | Bear / conservative | High yield with adequate coverage | Higher conviction buy |
+| Value-trap warning | N/A | N/A | Distressed | Yield reflects likely cut | Avoid |
+
+Current price position: unknown.
+
+## 12. Dividend Trap Checklist
 
 Takeaway: The checklist separates high yield from sustainable income.
 
@@ -188,13 +218,14 @@ Takeaway: The checklist separates high yield from sustainable income.
 | Special or variable dividends treated as recurring | Unknown | Placeholder |
 | Cycle peak payout | Unknown | Placeholder |
 
-## 12. Visual Summary
+## 13. Visual Summary
 
 - DPS path: `FY-4 0.00 -> FY-3 0.00 -> FY-2 0.00 -> FY-1 0.00 -> FY0 0.00`
 - Yield normalization: `TTM 0.0% vs normalized 0.0%-0.0% vs bear/base/bull N/A`
+- Buy-zone ladder: `Current 0.00 | Fair N/A | Accumulate N/A | Strong buy N/A`
 - Coverage labels by year: `FY-4 N/A | FY-3 N/A | FY-2 N/A | FY-1 N/A | FY0 N/A`
 
-## 13. Score, Required Ratings, and Portfolio Role
+## 14. Score, Required Ratings, and Portfolio Role
 
 Takeaway: The final rating combines yield, stability, FCF coverage, balance sheet, management, buybacks, and visibility.
 
@@ -218,7 +249,7 @@ Required ratings:
 - Three-Year Dividend Outlook: High Uncertainty
 - Portfolio Role: Watchlist
 
-## 14. Sources and Data Quality
+## 15. Sources and Data Quality
 
 List official filings, announcements, broker records, and third-party cross-checks used.
 
@@ -226,4 +257,4 @@ Data quality notes:
 
 - This skeleton contains placeholders only.
 - Replace all placeholders with current, cited data before using for any real ticker.
-- State missing data, fallback calculations, and broker-statement uncertainty clearly.
+- State missing data, fallback calculations, broker-statement uncertainty, historical price limitations, and buy-zone assumptions clearly.
