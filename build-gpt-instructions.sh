@@ -2,7 +2,10 @@
 set -euo pipefail
 
 SRC="dividend-income-equity-analysis"
-OUT="chatgpt-custom-gpt-instructions.md"
+OUT_DIR="dist"
+OUT="$OUT_DIR/chatgpt-custom-gpt-instructions.md"
+
+mkdir -p "$OUT_DIR"
 
 cat gpt-header.md > "$OUT"
 
@@ -35,3 +38,5 @@ cat <<'EOF' >> "$OUT"
 
 Use `dividend-income-equity-analysis/schema.json` only when the user asks for JSON or machine-readable output. Upload it as a knowledge file rather than pasting the full schema into Custom GPT Instructions unless needed.
 EOF
+
+echo "Generated $OUT"
